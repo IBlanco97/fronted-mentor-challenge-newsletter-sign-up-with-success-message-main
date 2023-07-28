@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Newsletter sign-up form with success message</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution_a { color: hsl(228, 45%, 44%); }
+    .darkbg {
+      background-color: #36384D;
+    }
+  </style>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script src="bootstrap/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+  <!-- Sign-up form start -->
+<div id="app">
+  <div>
+    <div class="container container_a darkbg">
+      <br>
+      <div class="conteiner container_b" v-on:click="debug">
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="margin-30px v-align">
+              <h1><strong>Stay updated!</strong></h1>
+
+              <div class="tiny-font margin-3">
+                Join 60,000+ product managers receiving monthly updates on:
+                <ul>
+                  <li><img class="ul-icon margin-3" src="assets/images/icon-list.svg" alt=""> Product discovery and building what matters</li>
+                  <li><img class="ul-icon margin-3" src="assets/images/icon-list.svg" alt=""> Measuring to ensure updates are a success</li>
+                  <li><img class="ul-icon margin-3" src="assets/images/icon-list.svg" alt=""> And much more!</li>
+                </ul>
+              </div>
+              <form v-on:submit.prevent="showBanner()">
+                Email address
+                <div>
+                  <input class="full-width margin-1 email radius-5" type="email" placeholder="email@company.com" required v-model="email">
+                </div>
+                <button type="submit" class="full-width margin-1 darkButton tiny-font">
+                  Subscribe to monthly newsletter
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-6">  
+            <div class="margin-3 h-center">
+              <img class="full-width radius-10 v-center" src="assets/images/desktop-preview.jpg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
+
+  
+  <div class="banner" v-show="subscription_performed">
+    <div class="message">
+      <div class="margin-20px">
+        <img class="successIcon" src="assets/images/icon-success.svg" alt="">
+        <h1><strong>Thanks for subscribing!</strong></h1>
+        <p class="tiny-font">
+          A confirmation email has been sent to <strong>ash@loremcompany.com</strong>. 
+          Please open it and click the button inside to confirm your subscription.
+        </p>
+        <button class="full-width radius-5 darkButton tiny-font" id="okButton" v-on:click="hideBanner">Dismiss message</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Sign-up form end -->
+
+  <!-- Success message start -->
+
+  <!-- Success message end -->
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="https://cu.linkedin.com/in/inti-antonio-blanco-gonz%C3%A1lez-3836aa270">Inti Antonio Blanco González</a>.
+  </div>
+
+  <script src="http://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          email: '',
+          subscription_performed: false
+        }
+      },
+      methods: {
+        showBanner() {
+          this.subscription_performed = true
+          this.email = ''   
+        },
+        hideBanner() {
+          this.subscription_performed = false   
+        },
+        debug() {
+          console.log(this.subscription_performed)
+        }
+      }
+    })
+    app.mount('#app')
+  </script>
+
+</body>
+</html>
